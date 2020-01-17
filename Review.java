@@ -130,6 +130,35 @@ public class Review {
     
     return word;
   }
+  
+  //New Method finds total sentiment value of given file
+  
+  public static double totalSentiment (String fileName)
+  {
+      //open file
+      String word = textToString(fileName);
+      String place = "";
+      double sum = 0;
+      //pick out word
+      for(int i = 0; i < word.length(); i++)
+      {
+         if(word.substring(i, i+1).equals(" "))
+         {
+            place = removePunctuation(place);
+            sum += sentimentVal(place);
+            place = "";
+            
+         }
+         else
+         {
+            place += word.substring(i, i+1);
+            
+         }
+      }
+      return sum;          
+            
+    }
+
  
 
 
