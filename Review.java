@@ -114,6 +114,39 @@ public class Review {
     return punc;
   }
   
+  public static int starRating(String fileName)
+  {
+     double totalSentiment = totalSentiment(fileName);
+     if(totalSentiment >= 10)
+     {
+        return 5;
+     }
+     
+     else if(totalSentiment >= 5 && totalSentiment < 10)
+     {
+        return 4;
+     }
+     else if(totalSentiment >= 3 && totalSentiment < 5)
+     {
+        return 3;
+      }
+     else if(totalSentiment >= 0 && totalSentiment < 3)
+     {
+        return 2;
+     }
+     else if(totalSentiment < 0)
+     {
+        return 1;
+     }
+      
+     else
+     {
+        return 0;
+     }
+
+  }
+
+  
    /**
    * Returns the word after removing any beginning or ending punctuation
    */
