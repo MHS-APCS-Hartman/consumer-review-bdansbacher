@@ -251,4 +251,62 @@ public static String fakeReview(String fileName)
     return place;
     
     
-  } 
+  }
+    
+  public static String fakeReviewStronger(String fileName)
+  {
+   String review = textToString(fileName);
+   String place = "";
+   String adjective = "";
+   String newAdj = ""; 
+   
+   boolean asterisk = false;
+   
+   for (int i = 0; i < review.length(); i++)
+   {
+      if (review.substring(i, i+1).equals("*"))
+      {
+         asterisk = true;
+      }
+      
+      else if (review.substring(i, i+1).equals(" ") && asterisk)
+      { 
+         while (true)
+         {
+            newAdj = randomAdjective();
+            if ( (sentimentVal(adjective) > 0) && (sentimentVal(newAdj) > sentimentVal(adjective)) )
+            {
+               break;
+            }
+            else if ( (sentimentVal(adjective) < 0) && (sentimentVal(newAdj) < sentimentVal(adjective)) )
+            {
+               break;
+            }
+            else if (sentimentVal(adjective) == 0)
+            {
+               break;
+            }
+         }
+         
+         place += newAdj + " ";
+         adjective = "";
+         asterisk = false;
+
+      }
+      
+      else if (asterisk)
+      {
+         adjective = adjective + review.substring(i, i+1);
+      }
+      
+      else if (asterisk == false)
+      {
+         place = place + review.substring(i, i+1);
+      }
+   }
+   return place;
+  }
+
+
+
+
