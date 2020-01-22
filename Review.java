@@ -117,6 +117,9 @@ public class Review {
   public static int starRating(String fileName)
   {
      double totalSentiment = totalSentiment(fileName);
+    //Goes through and determines which range it is in
+    //Ranges are listed below
+    //Else is returns 0 for an empty review or unlisted words
      if(totalSentiment >= 10.0)
      {
         return 5;
@@ -224,25 +227,26 @@ public class Review {
   }
 }
 
-public static String fakeReview(String fileName)
+  public static String fakeReview(String fileName)
   {
     String review = textToString(fileName);
     String place = "";
     boolean asterisk = false;
-    
+    //String traversal
     for(int i = 0; i < review.length(); i++)
     {
+      //Checking for asterisk
       if(review.substring(i, i+1).equals("*"))
       {
          asterisk = true;
       }
-      
+      //Adds random adjective to the placeholder
       else if(review.substring(i, i+1).equals(" ") && asterisk)
       {
          place += randomAdjective() + " ";
          asterisk = false;
       }
-      
+      //Continues to traverse the String
       else if(asterisk == false)
       {
          place += review.substring(i, i+1);
@@ -260,8 +264,10 @@ public static String fakeReview(String fileName)
    String adjective = "";
    String newAdj = ""; 
    
+   //This variable determines when and where an adjective occurs
    boolean asterisk = false;
    
+   //Traverses the string
    for (int i = 0; i < review.length(); i++)
    {
       if (review.substring(i, i+1).equals("*"))
@@ -271,16 +277,25 @@ public static String fakeReview(String fileName)
       
       else if (review.substring(i, i+1).equals(" ") && asterisk)
       { 
-         while (true)
+        //Makes sure the adjective added is more negative or more positive than the previous
+        //Generates new adjective and compares it to the located adjective
+        while (true)
          {
             newAdj = randomAdjective();
-            if ( (sentimentVal(adjective) > 0) && (sentimentVal(newAdj) > sentimentVal(adjective)) )
+            if ( (sentimentVal(adjective) > 0) )
             {
-               break;
+               if (sentimentVal(newAdj) > sentimentVal(adjective))
+               {
+                  break;
+               }
             }
-            else if ( (sentimentVal(adjective) < 0) && (sentimentVal(newAdj) < sentimentVal(adjective)) )
+            else if ( (sentimentVal(adjective) < 0) )
             {
-               break;
+               if(sentimentVal(newAdj) < sentimentVal(adjective))
+               {
+                  break;
+               }
+               
             }
             else if (sentimentVal(adjective) == 0)
             {
@@ -288,17 +303,19 @@ public static String fakeReview(String fileName)
             }
          }
          
+         //Adds the new adjective to the placeholder and resets
          place += newAdj + " ";
          adjective = "";
          asterisk = false;
 
       }
       
+      //Location of adjective
       else if (asterisk)
       {
          adjective = adjective + review.substring(i, i+1);
       }
-      
+      //Adding letters to adjective placeholder
       else if (asterisk == false)
       {
          place = place + review.substring(i, i+1);
@@ -306,7 +323,7 @@ public static String fakeReview(String fileName)
    }
    return place;
   }
-
+}
 
 
 
