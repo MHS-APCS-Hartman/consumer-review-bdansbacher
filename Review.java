@@ -225,7 +225,6 @@ public class Review {
       return randomNegativeAdj();
     }
   }
-}
 
   public static String fakeReview(String fileName)
   {
