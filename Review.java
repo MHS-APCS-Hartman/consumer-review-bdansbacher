@@ -130,9 +130,35 @@ public class Review {
     
     return word;
   }
- 
-
-
+  
+  public static String fakeReview(String fileName)
+  {
+    String review = textToString(fileName);
+    String place = "";
+    boolean asterisk = false;
+    
+    for(int i = 0; i < review.length(); i++)
+    {
+      if(review.substring(i, i+1).equals("*"))
+      {
+         asterisk = true;
+      }
+      
+      else if(review.substring(i, i+1).equals(" ") && asterisk)
+      {
+         place += randomAdjective() + " ";
+         asterisk = false;
+      }
+      
+      else if(asterisk == false)
+      {
+         place += review.substring(i, i+1);
+      }
+    }
+    return place;
+    
+    
+  } 
   
   /** 
    * Randomly picks a positive adjective from the positiveAdjectives.txt file and returns it.
