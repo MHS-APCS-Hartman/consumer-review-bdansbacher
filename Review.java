@@ -312,12 +312,12 @@ public class Review {
       //Location of adjective
       else if (asterisk)
       {
-         adjective = adjective + review.substring(i, i+1);
+         adjective += review.substring(i, i+1);
       }
       //Adding letters to adjective placeholder
       else if (asterisk == false)
       {
-         place = place + review.substring(i, i+1);
+         place += review.substring(i, i+1);
       }
    }
    return place;
