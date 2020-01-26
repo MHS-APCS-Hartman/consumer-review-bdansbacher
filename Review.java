@@ -242,8 +242,16 @@ public class Review {
       //Adds random adjective to the placeholder
       else if(review.substring(i, i+1).equals(" ") && asterisk)
       {
-         place += randomAdjective() + " ";
-         asterisk = false;
+         while(true)
+         {
+            String newAdj = randomAdjective();
+            if(newAdj.equals("") != true)
+            {
+               place += randomAdjective() + " ";
+               asterisk = false;
+               break;
+            }
+         }
       }
       //Continues to traverse the String
       else if(asterisk == false)
@@ -281,24 +289,20 @@ public class Review {
         while (true)
          {
             newAdj = randomAdjective();
-            if ( (sentimentVal(adjective) > 0) )
+            if(newAdj.equals("") != true
             {
-               if (sentimentVal(newAdj) > sentimentVal(adjective))
+               if ( (sentimentVal(adjective) > 0) && (sentimentVal(newAdjective) > sentimentVal(adjective)) )
                {
                   break;
                }
-            }
-            else if ( (sentimentVal(adjective) < 0) )
-            {
-               if(sentimentVal(newAdj) < sentimentVal(adjective))
+               else if ( (sentimentVal(adjective) < 0) && (sentimentVal(newAdjective) < sentimentVal(adjective)) )
                {
                   break;
                }
-               
-            }
-            else if (sentimentVal(adjective) == 0)
-            {
-               break;
+               else if (sentimentVal(adjective) == 0)
+               {
+                  break;
+               }
             }
          }
          
