@@ -289,13 +289,13 @@ public class Review {
         while (true)
          {
             newAdj = randomAdjective();
-            if(newAdj.equals("") != true
+            if(newAdj.equals("") != true)
             {
-               if ( (sentimentVal(adjective) > 0) && (sentimentVal(newAdjective) > sentimentVal(adjective)) )
+               if ( (sentimentVal(adjective) > 0) && (sentimentVal(newAdj) > sentimentVal(adjective)) )
                {
                   break;
                }
-               else if ( (sentimentVal(adjective) < 0) && (sentimentVal(newAdjective) < sentimentVal(adjective)) )
+               else if ( (sentimentVal(adjective) < 0) && (sentimentVal(newAdj) < sentimentVal(adjective)) )
                {
                   break;
                }
